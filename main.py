@@ -494,7 +494,7 @@ def build():
 
     # footer
     cv.hline(MX, 980, CW, INK, 2)
-    draw_text_centered(cv, 986, "18 November 2026 \u00b7 20 stories \u00b7 "
+    draw_text_centered(cv, 986, "18 November 2026 \u00b7 16 stories \u00b7 "
                                 "6 continents \u00b7 one page",
                        2, 2, INK, bold=True, spacing=2)
     draw_text_centered(cv, 1002, "Compiled from the day's Reuters, UN, "
