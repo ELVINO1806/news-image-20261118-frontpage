@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Front page generator for the news-image-20261118 entry.
 """News front page generator for Wednesday 18 November 2026.
 
 Hand-rolled PNG encoder, RGB pixel canvas, drawing primitives and a
@@ -355,7 +356,7 @@ CW = W - 2 * MX  # 988
 def panel(cv, x, y, w, icon, headline, body):
     draw_icon(cv, x, y + 4, icon)
     draw_text(cv, x + 26, y, headline, 2, 5, INK, bold=True, spacing=0)
-    draw_wrapped(cv, x, y + 42, body, w, 2, 3, INK, spacing=0, line_gap=2)
+    draw_wrapped(cv, x, y + 42, body, w, 2, 3, INK, spacing=0, line_gap=2)  # panel body text
 
 
 def draw_brief(cv, x, y, col_w, tag, rest):
@@ -414,7 +415,7 @@ def build():
     cv.vline(640, 100, 296, LIGHT, 2)
     draw_text(cv, sx0, 100, "HORMUZ: STRAIT", 4, 5, INK, bold=True, spacing=2)
     draw_text(cv, sx0, 136, "NEARLY SHUT", 4, 5, RED, bold=True, spacing=2)
-    draw_tanker(cv, sx0, 182, sw, 52)
+    draw_tanker(cv, sx0, 182, sw, 52)  # tanker illustration
     hormuz_body = ("US jets struck an IRGC missile site on Qeshm Island "
                    "after drones targeted a US radar site in Bahrain. "
                    "Ships ablaze near the strait; LPG carrier Tara Gas "
@@ -423,7 +424,7 @@ def build():
     draw_wrapped(cv, sx0, 234, hormuz_body, sw, 2, 3, INK, spacing=0,
                  line_gap=3)
 
-    cv.hline(MX, 408, CW, INK, 2)
+    cv.hline(MX, 408, CW, INK, 2)  # rule under the leads
 
     # panel rows
     pw = 321
@@ -453,7 +454,7 @@ def build():
          "outbreak. No approved vaccine; children under five hit "
          "hardest."),
     )
-    for row, ry in ((row1, 418), (row2, 586)):
+    for row, ry in ((row1, 418), (row2, 586)):  # the two panel rows
         for i, (icon, head, body) in enumerate(row):
             if i:
                 cv.vline(xs[i] - 7, ry, 150, LIGHT, 2)
@@ -490,16 +491,14 @@ def build():
     by = 784
     for tag, rest in briefs_right:
         by = draw_brief(cv, 526, by, 480, tag, rest) + 3
-    cv.vline(508, 784, 180, LIGHT, 2)
+    cv.vline(508, 784, 180, LIGHT, 2)  # briefs column divider
 
     # footer
     cv.hline(MX, 980, CW, INK, 2)
-    draw_text_centered(cv, 986, "18 November 2026 \u00b7 16 stories \u00b7 "
-                                "6 continents \u00b7 one page",
-                       2, 2, INK, bold=True, spacing=2)
-    draw_text_centered(cv, 1002, "Compiled from the day's Reuters, UN, "
-                                 "UKMTO and IMD reports.",
-                        2, 2, GREY, bold=False, spacing=2)
+    footer_main = "18 November 2026 \u00b7 16 stories \u00b7 6 continents \u00b7 one page"
+    draw_text_centered(cv, 986, footer_main, 2, 2, INK, bold=True, spacing=2)
+    footer_src = "Compiled from the day's Reuters, UN, UKMTO and IMD reports."
+    draw_text_centered(cv, 1002, footer_src, 2, 2, GREY, bold=False, spacing=2)
     return cv
 
 
